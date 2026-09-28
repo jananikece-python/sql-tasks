@@ -1,0 +1,25 @@
+create database empdetails;
+use empdetails;
+
+create table emp (emp_id int,e_name varchar(50),Department varchar(50),salary int,joining_date date);
+insert into emp (emp_id,e_name,Department,salary,joining_date)
+values
+(101,"Arun","IT",45000,'2023-01-10'),
+(102,"Priya","HR",35000,'2022-06-15'),
+(103,"Ravi","IT",55000,'2021-03-20'),
+(104,"Divya","sales",40000,'2023-08-05'),
+(105,"Kiran","IT",60000,'2020-11-12');
+
+select*from emp;
+select e_name,salary from emp;
+select e_name,salary from emp where salary>40000;
+select*from emp where Department="IT";
+select*from emp where salary between 40000 and 60000;
+select*from emp order by salary desc;
+select max(salary)  as Highest_salary from emp;
+select min(salary) as Lowest_salary from emp;
+select avg(salary) as Average_salary from emp;
+select count(*) as total_employees from emp;
+select department,avg(salary) as average_s_of_dpt from emp group by department;
+select department,max(salary) as maxi_s_of_dpt from emp group by department;
+select department, count(*) as emp_count from emp group by department;

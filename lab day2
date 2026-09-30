@@ -1,0 +1,37 @@
+create database company;
+use company;
+
+create table emp (emp_id int,e_name varchar(50),Department varchar(50),salary int,joining_date date);
+insert into emp (emp_id,e_name,Department,salary,joining_date)
+values
+(101,"Arun","IT",45000,'2023-01-10'),
+(102,"Priya","HR",35000,'2022-06-15'),
+(103,"Ravi","IT",55000,'2021-03-20'),
+(104,"Divya","sales",40000,'2023-08-05'),
+(105,"Kiran","IT",60000,'2020-11-12');
+
+/*groupby*/
+
+select* from emp;
+select avg(salary),department from emp group by department;
+select max(salary),department from emp group by department;
+select count(*),department from emp group by department;
+select count(*),department from emp group by department having count(*)>1;
+select avg(salary),department from emp group by department having avg(salary)>45000;
+
+/*joins*/
+
+create table dept(dept_id int,department varchar(30),manager varchar(50));
+insert into dept(dept_id,department,manager)
+values
+(1,"IT","Suresh"),
+(2,"HR","Meena"),
+(3,"Sales","Kumar");
+select * from dept;
+select emp.e_name,dept.manager from dept inner join emp on emp.Department=dept.department;
+select emp.e_name,dept.manager from dept left join emp on emp.Department=dept.department;
+select emp.e_name,dept.manager from dept right join emp on emp.Department=dept.department;
+select emp.e_name,dept.manager from dept left join emp on emp.Department=dept.department where dept.dept_id is null;
+select emp.e_name,dept.department,dept.manager from dept left join emp on emp.Department=dept.department
+union
+select emp.e_name,dept.department,dept.manager from dept right join emp on emp.Department=dept.department;
